@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
 import { SendNotification } from 'src/application/use-cases/send-notification';
 import { NotificationViewModel } from '../view-models/notification-view-model';
+import { ApiTags } from '@nestjs/swagger';
 
 /**
  * CONTORLLER
@@ -9,6 +10,7 @@ import { NotificationViewModel } from '../view-models/notification-view-model';
  * Define as rotas
  */
 @Controller('notifications')
+@ApiTags("Notifications")
 export class NotificationController {
 
   constructor(

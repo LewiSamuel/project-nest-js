@@ -21,3 +21,12 @@ model Notification {
 
   @@index([recipientId])
 }
+
+
+model Users {
+  id String @id
+  name String
+  email String
+  password String
+  createdAt   DateTime  @default(now())
+}

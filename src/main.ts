@@ -13,8 +13,16 @@ async function bootstrap() {
     .setDescription('The API description')
     .setVersion('1.0')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
+
+  console.log("🌐- - - - - - - - - - - - - - - - - - - - - - - - - -🌐")
+  console.log("| ");
+  console.log('|  Project Example - API ❤️');
+  console.log('|  💻 API running at http://localhost:3000/swagger');
+  console.log("| ");
+  console.log("🌐- - - - - - - - - - - - - - - - - - - - - - - - - -🌐")
 
   await app.listen(3000);
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateUserBody } from '../dtos/create-user-body';
 import { UserViewModel } from '../view-models/user-view-model';
 import { CreateUser } from '@application/use-cases/user/create-user';
@@ -17,6 +17,7 @@ export class UserController {
 
   constructor(
     private createUser: CreateUser,
+    private updateUser: CreateUser,
     private listUser: ListUser,
     private listUserById: ListUserById
   ) {}
@@ -47,6 +48,17 @@ export class UserController {
     const { name, email, password } = body;
 
     const { user } = await this.createUser.execute({ name, email, password })
+
+    return {
+      user: UserViewModel.toHttp(user)
+    }
+  }
+  
+  @Put()
+  async update(@Body() body: CreateUserBody) {
+    const { name, email, password } = body;
+
+    const { user } = await this.updateUser.execute({ name, email, password })
 
     return {
       user: UserViewModel.toHttp(user)

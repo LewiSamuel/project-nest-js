@@ -1,13 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model Notification {
@@ -16,17 +13,16 @@ model Notification {
   content     String
   category    String
   readAt      DateTime?
-  canceledAt  DateTime?
   createdAt   DateTime  @default(now())
+  canceledAt  DateTime?
 
   @@index([recipientId])
 }
 
-
 model Users {
-  id String @id
-  name String
-  email String
-  password String
-  createdAt   DateTime  @default(now())
+  id        String   @id
+  name      String
+  email     String
+  password  String
+  createdAt DateTime @default(now())
 }
